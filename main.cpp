@@ -15,7 +15,7 @@ float *wpisywanie();
 void wypisywanie(float tab[]);
 void sprawdzanieElementow(float tab[]);
 void zad4();
-
+//blblblb
 int main(){
     bool petla = true;
     int wybor;
