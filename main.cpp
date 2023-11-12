@@ -13,28 +13,34 @@ Data: 21 pazdziernika 2023r
 
 float *wpisywanie();
 void wypisywanie(float tab[]);
-void zad3();
+void sprawdzanieElementow(float tab[]);
 void zad4();
 
 int main(){
     bool petla = true;
     int wybor;
     float *Tab;
+    Tab = wpisywanie();
     while(petla){
         system("cls");
         printf("Autor: Grzegorz Wszoła\n\n");
-        Tab = wpisywanie();
         printf("Ktore zadanie chcesz wybrac\n");
-        printf("1 - Wprowadzanie danych do tablicy\n2 - wypisywanie wprowadzonych danych\n3 - \n4 - \n5 - Zakoncz\nWybierz liczbe: ");
+        printf("Aktualna tablica: ");wypisywanie(Tab);
+        printf("1 - Wprowadzanie danych do tablicy\n2 - Wypisywanie wprowadzonych danych\n3 - "
+               "Sprawdz dane tablicy\n4 - \n5 - Zakoncz\nWybierz liczbe: ");
         scanf("%d", &wybor);
+        printf("\n\n");
         switch(wybor){
             case 1:
+                Tab = wpisywanie();
+                system("pause");
                 break;
             case 2:
-                //wypisywanie(Tab);
+                wypisywanie(Tab);
+                system("pause");
                 break;
             case 3:
-
+                sprawdzanieElementow(Tab);
                 break;
             case 4:
 
@@ -57,11 +63,17 @@ int main(){
 
 float *wpisywanie(){
     //wczytywanie elementow tablicy
-    float tab[ROZMIAR];
+    printf("Wprowadz dane do tablicy\n");
+    static float tab[ROZMIAR];
     for(int i = 0; i < ROZMIAR; i++){
-        printf("Podaj %d element tablicy: ", i+1);
+        printf("Tab[ %d ] =  ", i);
         scanf("%f", &tab[i]);
     }
+    printf("Tablica to Tab = [ ");
+    for(int i = 0; i < ROZMIAR; i++){
+        printf(" %.1f ", tab[i]);
+    }
+    printf(" ]\n\n");
     return tab;
 }
 
@@ -72,14 +84,9 @@ void wypisywanie(float tab[]){
         printf(" %.1f ", tab[i]);
     }
     printf("]\n\n");
-    system("pause");
 }
 
-void zad1(float tab[]){
-
-    /*
-
-
+void sprawdzanieElementow(float tab[]){
     //sprawdzanie ilosci liczb
     int ile_dodatnich = 0, ile_ujemnych = 0;
     float suma_dod = 0, suma_uj = 0, sr_dod = 0, sr_uj = 0;
@@ -87,17 +94,37 @@ void zad1(float tab[]){
         if(tab[i] > 0){
             ile_dodatnich++;
             suma_dod += tab[i];
+        } else if(tab[i] == 0){
+            continue;
         } else {
             ile_ujemnych++;
             suma_uj += tab[i];
         }
     }
-    sr_dod = suma_dod/ile_dodatnich;
-    sr_uj = suma_uj/ile_ujemnych;
 
-    printf("Ilosc dodatnich: %d\nIlosc ujemnych: %d\nSuma dodatnich: %.1f\nSuma ujemnych: %.1f\nSrednia"
-           " dodatnich: %.1f\nSrednia ujemnych: %.1f\n\n", ile_dodatnich, ile_ujemnych, suma_dod, suma_uj, sr_dod, sr_uj);
-    system("pause");*/
+
+    printf("Ilosc dodatnich: %d\nIlosc ujemnych: %d\nSuma dodatnich: %.1f\nSuma ujemnych: %.1f\n",
+           ile_dodatnich, ile_ujemnych, suma_dod, suma_uj);
+    if(ile_dodatnich != 0){
+        sr_dod = suma_dod/ile_dodatnich;
+        printf("Srednia dodatnich: %.1f\n", sr_dod);
+    } else {
+        printf("Srednia dodatnich: 0\n");
+    }
+    if(ile_ujemnych != 0){
+        sr_uj = suma_uj/ile_ujemnych;
+        printf("Srednia ujemnych: %.1f\n\n", sr_uj);
+    } else {
+        printf("Srednia ujemnych: 0\n\n");
+    }
+    system("pause");
+}
+
+void sprawdzanieCiaglosci(float tab[]){
+
+}
+
+void zad1(float tab[]){
 
     bool rosnacy = false, niemalejacy = false, staly = false, nierosnacy = false, malejacy = false;
     for(int i = 0; i < ROZMIAR; i++) {
