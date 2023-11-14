@@ -200,22 +200,28 @@ void zadanie4(){
     int tab[26], ile_znakow;
     char znak;
 
+    for(int i = 0; i <=26; i++){
+        tab[i] = 0;
+    }
+
     printf("Podaj ciag znakow(zakoncz klikajac ESC): ");
     while(znak != 27){
         znak = getch();
-        if ((znak >= 65 && znak <= 90) || (znak >= 97 && znak <= 122)){
-            printf("%c", znak);
-        }
+        printf("%c", znak);
         if(znak >= 97 && znak <= 122){
             znak -= 32;
         }
         if (znak>=65 && znak <=90){
             tab[znak-65]++;
-            ile_znakow++;
         }
     }
+    printf("\n");
     for(int i = 0; i <= 25; i++){
-        printf("\nlitera %c ", i + 65);
+        ile_znakow = 0;
+        for(int j = 0; j < tab[i]; j++){
+            ile_znakow++;
+        }
+        printf("\n litera %c %d ", i + 65, ile_znakow);
         for(int j = 0; j < tab[i]; j++){
             printf("#");
         }
