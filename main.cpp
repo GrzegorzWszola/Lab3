@@ -2,7 +2,7 @@
 Autor: Grzegorz Wszoła
 Grupa: Czw/P 17:05
 Temat: Lab 2
-Data: 21 pazdziernika 2023r
+Data: 01 Grudzien 2023r
 */
 
 #include<stdio.h>
@@ -12,7 +12,6 @@ Data: 21 pazdziernika 2023r
 #include<conio.h>
 #define ROZMIAR 10
 
-int deklaracajRozmiar();
 float *wpisywanie();
 void wypisywanie(float tab[]);
 void sprawdzanieElementow(float tab[]);
@@ -22,15 +21,16 @@ void zadanie4();
 
 int main(){
     bool petla = true, petla_wyboru = true;
-    int wybor_1, wybor_2;
+    int wybor;
     float *Tab;
 
+    //petla pierwszego wyboru
     while(petla_wyboru){
         system("cls");
         printf("Wprowadz dane recznie, program wylosuje je za ciebie lub wybierz zadanie 4(dla ambitnych)"
                "\n1 - Wprowadz dane recznie\n2 - Losowe dane\n3 - zadanie 4\nWybor: ");
-        scanf("%d", &wybor_1);
-        switch(wybor_1){
+        scanf("%d", &wybor);
+        switch(wybor){
             case 1:
                 system("cls");
                 Tab = wpisywanie();
@@ -53,6 +53,7 @@ int main(){
         }
     }
 
+    //petla wyboru zadan
     while(petla){
         system("cls");
         printf("Autor: Grzegorz Wszoła\n\n");
@@ -60,9 +61,9 @@ int main(){
         printf("Aktualna tablica: ");wypisywanie(Tab);
         printf("1 - Wprowadzanie danych do tablicy\n2 - Wypisywanie wprowadzonych danych\n3 - "
                "Sprawdz dane tablicy\n4 - Uzupelnienie tablicy losowymi danymi\n5 - Sortowanie tabeli\n6 - Zakoncz\nWybierz liczbe: ");
-        scanf("%d", &wybor_2);
+        scanf("%d", &wybor);
         printf("\n\n");
-        switch(wybor_2){
+        switch(wybor){
             case 1:
                 Tab = wpisywanie();
                 system("pause");
@@ -136,7 +137,7 @@ void sprawdzanieElementow(float tab[]){
         }
     }
 
-
+    //wypisywanie danych z tablicy
     printf("Ilosc dodatnich: %d\nIlosc ujemnych: %d\nSuma dodatnich: %.1f\nSuma ujemnych: %.1f\n",
            ile_dodatnich, ile_ujemnych, suma_dod, suma_uj);
     if(ile_dodatnich != 0){
@@ -166,10 +167,12 @@ float *losowanie(){
     printf("Podaj zakres liczb losowych\nOd: ");
     scanf("%f", &min);
     printf("Do: "); scanf("%f", &max);
+
     for(int i = 0; i < ROZMIAR; i++){
         tab[i] = min + (max - min)*rand()/((double)RAND_MAX);
     }
     printf("Wylosowana tabela Tab = [");
+
     for(int i = 0; i < ROZMIAR; i++){
         printf("% .1f ", tab[i]);
     }
@@ -179,6 +182,7 @@ float *losowanie(){
 }
 
 void sortowanie(float tab[]){
+    //algorytm sortowania insert sort
     for(int i = 1;i < ROZMIAR; i++) {
         int j = i;
         while(j > 0 && tab[j] < tab[j-1]) {
@@ -188,7 +192,7 @@ void sortowanie(float tab[]){
             j--;
         }
     }
-    printf("Posortowanie tabela Tab = [");
+    printf("Posortowana tabela Tab = [");
     for(int i = 0; i < ROZMIAR; i++){
         printf(" %.1f ", tab[i]);
     }
@@ -200,10 +204,11 @@ void zadanie4(){
     int tab[26], ile_znakow;
     char znak;
 
-    for(int i = 0; i <=26; i++){
+    //zerowanie elemntow tablicy
+    for(int i = 0; i <=26; i++)
         tab[i] = 0;
-    }
 
+    //wczytywanie ciagu liczb i zliczanie
     printf("Podaj ciag znakow(zakoncz klikajac ESC): ");
     while(znak != 27){
         znak = getch();
@@ -215,7 +220,9 @@ void zadanie4(){
             tab[znak-65]++;
         }
     }
-    printf("\n");
+
+    //wypisywanie danych i tworzenie tabeli
+    printf("l\n");
     for(int i = 0; i <= 25; i++){
         ile_znakow = 0;
         for(int j = 0; j < tab[i]; j++){
