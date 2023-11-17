@@ -8,8 +8,8 @@ Data: 01 Grudzien 2023r
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-#include<windows.h>
 #include<conio.h>
+#include<windows.h>
 #define ROZMIAR 10
 
 float *wpisywanie();
@@ -20,77 +20,95 @@ void sortowanie(float tab[]);
 void zadanie4();
 
 int main(){
-    bool petla = true, petla_wyboru = true;
-    int wybor;
+    bool petla = true;
+    int wybor, pozycja = 0;
     float *Tab;
-
-    //petla pierwszego wyboru
-    while(petla_wyboru){
-        system("cls");
-        printf("Wprowadz dane recznie, program wylosuje je za ciebie lub wybierz zadanie 4(dla ambitnych)"
-               "\n1 - Wprowadz dane recznie\n2 - Losowe dane\n3 - zadanie 4\nWybor: ");
-        scanf("%d", &wybor);
+    Tab = wpisywanie();
+    printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+    printf("==> Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+           "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
+    while(petla){
+        wybor = getch();
         switch(wybor){
-            case 1:
-                system("cls");
-                Tab = wpisywanie();
-                petla_wyboru = false;
+            case 'w':
+                pozycja--;
                 break;
-            case 2:
-                system("cls");
-                Tab = losowanie();
-                petla_wyboru = false;
-                break;
-            case 3:
-                system("cls");
-                zadanie4();
-                break;
-            default:
-                system("cls");
-                printf("Niepoprawne dane\n\n");
-                system("pause");
+            case 's':
+                pozycja++;
                 break;
         }
-    }
+        //nie pozwala wyjsc poza ilosc wyborow
+        if(pozycja > 6){
+            pozycja = 6;
+        } else if(pozycja < 0){
+            pozycja = 0;
+        }
 
-    //petla wyboru zadan
-    while(petla){
-        system("cls");
-        printf("Autor: Grzegorz Wszoła\n\n");
-        printf("Ktore zadanie chcesz wybrac\n");
-        printf("Aktualna tablica: ");wypisywanie(Tab);
-        printf("1 - Wprowadzanie danych do tablicy\n2 - Wypisywanie wprowadzonych danych\n3 - "
-               "Sprawdz dane tablicy\n4 - Uzupelnienie tablicy losowymi danymi\n5 - Sortowanie tabeli\n6 - Zakoncz\nWybierz liczbe: ");
-        scanf("%d", &wybor);
-        printf("\n\n");
-        switch(wybor){
+        switch(pozycja){
+            case 0:
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("==> Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
+                break;
             case 1:
-                Tab = wpisywanie();
-                system("pause");
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n==> Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
                 break;
             case 2:
-                wypisywanie(Tab);
-                system("pause");
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n==> Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
                 break;
             case 3:
-                sprawdzanieElementow(Tab);
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n==> Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
                 break;
             case 4:
-                Tab = losowanie();
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "==> Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n    Zakoncz");
                 break;
             case 5:
-                sortowanie(Tab);
+                system("cls");
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n==> Zadanie 4(dla ambitnych)\n\n    Zakoncz");
                 break;
             case 6:
                 system("cls");
-                printf("Dziekuje!\n\n");
-                system("pause");
-                petla = false;
+                printf("Poruszaj sie \'w\' - w gore, \'s\' - w dol, zatwierdz naciskajac \'e\'\n\n");
+                printf("    Wpisywanie danych do tablicy\n    Wypisywanie danych z tablicy\n    Sprawdzanie elementow tablicy\n    Losowanie elementow tablicyn\n"
+                       "    Sortowanie elementow tablicy\n\n    Zadanie 4(dla ambitnych)\n\n==> Zakoncz");
                 break;
-            default:
-                system("cls");
-                printf("Niepoprawny numer\n");
-                system("pause");
+        }
+
+        if(pozycja == 0 && wybor == 101){
+            system("cls");
+            Tab = wpisywanie();
+        } else if(pozycja == 1 && wybor == 101){
+            system("cls");
+            wypisywanie(Tab);
+        } else if(pozycja == 2 && wybor == 101){
+            system("cls");
+            sprawdzanieElementow(Tab);
+        } else if(pozycja == 3 && wybor == 101){
+            system("cls");
+            Tab = losowanie();
+        } else if(pozycja == 4 && wybor == 101){
+            system("cls");
+            sortowanie(Tab);
+        } else if(pozycja == 5 && wybor == 101){
+            system("cls");
+            zadanie4();
+        } else if(pozycja == 6 && wybor == 101){
+            petla = false;
         }
     }
     return 0;
@@ -152,7 +170,6 @@ void sprawdzanieElementow(float tab[]){
     } else {
         printf("Srednia ujemnych: 0\n\n");
     }
-    system("pause");
 }
 
 void sprawdzanieCiaglosci(float tab[]){
@@ -177,7 +194,6 @@ float *losowanie(){
         printf("% .1f ", tab[i]);
     }
     printf("]\n\n");
-    system("pause");
     return tab;
 }
 
@@ -197,7 +213,6 @@ void sortowanie(float tab[]){
         printf(" %.1f ", tab[i]);
     }
     printf("]\n\n");
-    system("pause");
 }
 
 void zadanie4(){
@@ -209,7 +224,9 @@ void zadanie4(){
         tab[i] = 0;
 
     //wczytywanie ciagu liczb i zliczanie
-    printf("Podaj ciag znakow(zakoncz klikajac ESC): ");
+    printf("Podaj ciag znakow(zakoncz klikajac ESC)\n");
+    Sleep(100);
+    printf(": ");
     while(znak != 27){
         znak = getch();
         printf("%c", znak);
@@ -228,12 +245,11 @@ void zadanie4(){
         for(int j = 0; j < tab[i]; j++){
             ile_znakow++;
         }
-        printf("\n litera %c %d ", i + 65, ile_znakow);
+        printf("\n litera %c %3d %2c", i + 65, ile_znakow, ' ');
         for(int j = 0; j < tab[i]; j++){
             printf("#");
         }
     }
-
     printf("\n\n");
-    system("pause");
+
 }
